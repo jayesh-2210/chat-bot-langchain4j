@@ -16,6 +16,7 @@ public class App
 
         IO.println("----Welcome to chatBot----");
         IO.println("Start Conversation with chatbot...");
+        IO.println("Press 1 : to create a study plan");
         IO.println("""
             Press any time 'quit' to exit
             """);
@@ -26,6 +27,13 @@ public class App
                 IO.println("Existing ChatBot");
                 IO.println("Thank You for using chatbot!");
                 break;
+            }
+            if (readIn.trim().equals("1")) {
+                IO.println("Enter the Topic ");
+                String topic = IO.readln();
+                String response = ChatHelper.getResponseFromStudyPlanner(topic);
+                IO.println("ChatBot : " + response);
+                continue;
             }
             // llm call krna pdega
             String response = ChatHelper.getResponse(readIn);

@@ -14,7 +14,7 @@ public interface BotAssistant {
 
 
     @SystemMessage(fromResource = "ai-system-prompt.txt")
-    String chat(String userMessage);
+    String chatWithBot(String userMessage);
 
 
 

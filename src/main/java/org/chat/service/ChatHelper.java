@@ -1,13 +1,6 @@
 package org.chat.service;
 
-import java.util.concurrent.CompletableFuture;
-
-import dev.langchain4j.data.message.AiMessage;
-import dev.langchain4j.data.message.ImageContent;
-import dev.langchain4j.data.message.TextContent;
-import dev.langchain4j.data.message.UserMessage;
 import dev.langchain4j.model.chat.ChatModel;
-import dev.langchain4j.model.chat.response.ChatResponse;
 import dev.langchain4j.model.openai.OpenAiChatModel;
 import dev.langchain4j.service.AiServices;
 
@@ -59,8 +52,34 @@ public class ChatHelper {
 //        CompletableFuture<ChatResponse> future = chatModel.chatAsync(userMessage);
 //        return future.toString();
 
+        //        BotAssistant assistant = AiServices.builder(BotAssistant.class)
+//            .chatModel(chatModel)
+//            .systemMessageProvider(chatMemoryId -> "You are a good friend of mine. Answer using slang.")
+//            .build();
+//        return assistant.chat(input);
+
         BotAssistant assistant = AiServices.create(BotAssistant.class, chatModel);
-        return assistant.chat(input);
+        return assistant.chatWithBot(input);
+
+    }
+
+
+    public static String getResponseFromStudyPlanner(String topic) {
+        String apiKey = System.getenv("OPENROUTER_API_KEY");
+        if (apiKey == null || apiKey.isBlank()) {
+            throw new IllegalStateException(
+                "OPENROUTER_API_KEY is missing. Set it in IntelliJ Settings > Build, Execution, Deployment > "
+                    + "Build Tools > Maven > Runner > Environment variables, then run again.");
+        }
+
+        ChatModel chatModel = OpenAiChatModel.builder()
+            .baseUrl("https://openrouter.ai/api/v1")
+            .apiKey(apiKey)
+            .modelName("openai/gpt-4o-mini")
+            .temperature(0.7)
+            .build();
+        StudyPlannerAssistant assistant = AiServices.create(StudyPlannerAssistant.class, chatModel);
+        return assistant.getStudyPlan(topic);
     }
 
 }
