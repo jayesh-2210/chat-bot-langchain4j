@@ -5,9 +5,15 @@ import dev.langchain4j.service.SystemMessage;
 public interface BotAssistant {
 
 
-    @SystemMessage("""
-        You are a good friend of mine. Answer using slang.
-        """)
+//    @SystemMessage("""
+//        Act as an helpful company assitant.
+//        Reply in short and in hinglish,
+//        Tumhara naam Ankur hai, to usihisab se conversation ko manage krna
+//        """)
+//    String chat(String userMessage);
+
+
+    @SystemMessage(fromResource = "ai-system-prompt.txt")
     String chat(String userMessage);
 
 
