@@ -1,5 +1,6 @@
 package org.chat;
 
+import org.chat.dto.DayPlan;
 import org.chat.dto.StudyPlan;
 import org.chat.service.ChatHelper;
 
@@ -37,7 +38,15 @@ public class App
                 IO.println("StudyPlan planTitle : " + response.planTitle());
                 IO.println("StudyPlan numberOfDay : " + response.numberOfDay());
                 IO.println("StudyPlan hoursPerDay : " + response.hoursPerDay());
-                IO.println("ChatBot : " + response);
+                IO.println("Day Plans : ");
+                for (DayPlan dayPlan : response.dayPlans()) {
+                    IO.println("Day Plans DayNumber: " + dayPlan.dayNumber());
+                    IO.println("Day Plans title: " + dayPlan.title());
+                    IO.println("Day Plans content: " + dayPlan.content());
+                    IO.println("Day Plans practiceQuestions: " + dayPlan.practiceQuestions());
+                    IO.println("+++++++++++++++++++++++++++");
+                }
+//                IO.println("ChatBot : " + response);
                 continue;
             }
             // llm call krna pdega
