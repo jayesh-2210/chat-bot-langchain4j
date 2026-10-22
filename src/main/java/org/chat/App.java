@@ -1,5 +1,6 @@
 package org.chat;
 
+import org.chat.dto.StudyPlan;
 import org.chat.service.ChatHelper;
 
 /**
@@ -31,7 +32,11 @@ public class App
             if (readIn.trim().equals("1")) {
                 IO.println("Enter the Topic ");
                 String topic = IO.readln();
-                String response = ChatHelper.getResponseFromStudyPlanner(topic);
+                StudyPlan response = ChatHelper.getResponseFromStudyPlanner(topic);
+                IO.println("StudyPlan planContent : " + response.planContent());
+                IO.println("StudyPlan planTitle : " + response.planTitle());
+                IO.println("StudyPlan numberOfDay : " + response.numberOfDay());
+                IO.println("StudyPlan hoursPerDay : " + response.hoursPerDay());
                 IO.println("ChatBot : " + response);
                 continue;
             }

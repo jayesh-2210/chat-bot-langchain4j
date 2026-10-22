@@ -1,5 +1,7 @@
 package org.chat.service;
 
+import org.chat.dto.StudyPlan;
+
 import dev.langchain4j.model.chat.ChatModel;
 import dev.langchain4j.model.openai.OpenAiChatModel;
 import dev.langchain4j.service.AiServices;
@@ -64,7 +66,7 @@ public class ChatHelper {
     }
 
 
-    public static String getResponseFromStudyPlanner(String topic) {
+    public static StudyPlan getResponseFromStudyPlanner(String topic) {
         String apiKey = System.getenv("OPENROUTER_API_KEY");
         if (apiKey == null || apiKey.isBlank()) {
             throw new IllegalStateException(

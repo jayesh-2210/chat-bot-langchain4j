@@ -1,5 +1,7 @@
 package org.chat.service;
 
+import org.chat.dto.StudyPlan;
+
 import dev.langchain4j.service.UserMessage;
 import dev.langchain4j.service.V;
 
@@ -17,7 +19,7 @@ public interface StudyPlannerAssistant {
         create an useful plan for given topic
         {{topic}}
         """)
-    String getStudyPlan(@V("topic") String topic);
+    StudyPlan getStudyPlan(@V("topic") String topic);
 
 
 }
